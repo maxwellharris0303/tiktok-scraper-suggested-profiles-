@@ -1,11 +1,12 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import tiktok_scraper
+import username_scraper
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
-@app.route('/get-profile-names', methods=['POST'])
+@app.route('/get-profile-usernames', methods=['POST'])
 def start_bot():
     try:
         # Get the JSON data from the request
@@ -16,7 +17,7 @@ def start_bot():
         username = data['username']
         
         # Call the scraper with the provided username
-        result = tiktok_scraper.main(username)
+        result = username_scraper.main(username)
         if len(result) == 0:
             return jsonify({"status": "success", "data": "no more suggested profiles"})
         return jsonify({"status": "success", "data": result, "total_count": len(result)})
