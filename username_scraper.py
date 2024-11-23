@@ -102,5 +102,5 @@ def main(target):
     print(f"Total unique profiles scraped: {len(username_list)}")
     return username_list
 
-main("maxwell")
+# main("maxwell")
 
